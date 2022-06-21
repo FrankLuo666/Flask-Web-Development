@@ -1,0 +1,6 @@
+###### Requirements without Version Specifiers ######
+# pip freeze => to check the installed packages'
+flask
+flask_bootstrap
+flask_moment
+flask_wtf
