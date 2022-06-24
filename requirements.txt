@@ -7,3 +7,4 @@ flask_moment
 flask_wtf
 flask-sqlalchemy
 flask-migrate
+flask-mail
