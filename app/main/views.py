@@ -1,4 +1,4 @@
-from flask import render_template, session, redirect, url_for, current_app
+from flask import render_template, session, redirect, url_for, current_app, request
 from .. import db
 from ..models import User
 from ..email import send_email
@@ -8,6 +8,8 @@ from .forms import NameForm
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    # print(__file__)
+    # print(request.path)
     form = NameForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.name.data).first()
