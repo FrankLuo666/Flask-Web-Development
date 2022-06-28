@@ -4,6 +4,8 @@ from flask import request
 from flask_migrate import Migrate
 from app import create_app, db
 from app.models import User, Role
+from ckan import create_app, db
+from ckan.models import User, Role
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
@@ -54,5 +56,5 @@ def test(test_names):
         tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
-# if __name__ == '__main__':
-#     print(__name__)
+if __name__ == '__main__':
+    print(app.url_map)
