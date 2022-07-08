@@ -1,4 +1,5 @@
 import os
+from redis import Redis
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -24,6 +25,12 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+    SESSION_TYPE = "redis"
+    SESSION_REDIS = Redis(host='127.0.0.1', port='6379', db=1)  # redis数据库连接
+    SESSION_KEY_PREFIX = "session:" # 保存到session中的值的前缀
+    PERMANENT_SESSION_LIFETIME = 7200 # 失效时间 秒
+    # 对cookie中存储的sessionid进行签名,也就是对save_session中的uuid进行签名后保存到cookie中去
+    SESSION_USE_SIGNER = False
 
 
 class TestingConfig(Config):

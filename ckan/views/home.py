@@ -31,6 +31,19 @@ def index():
                            known=session.get('known', False))
 
 
+@home.route('/setSession')
+def setSession():
+    session['username'] = 'smart'
+    session['age'] = 18
+    return "设置session"
+
+@home.route('/getSession')
+def getSession():
+    username = session.get('username')
+    age = session.get('age')
+    return f'username: {username}, age: {age}'
+
+
 @home.app_errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
